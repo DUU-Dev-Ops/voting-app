@@ -5,14 +5,14 @@ var PollSchema = new Schema({
     name: {
         type: String,
         unique: true,
+        required: true,
         trim: true
     },
-    scheme: {
-        type: String,
-        enum: ['majority', 'STV'],
-        trim: true
-    },
-    candidates: [String]
+    candidates: [{ name: String, link: String }],
+    expiry: {
+        type: Date,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Poll', PollSchema);

@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  #poll-admin
+    .mdl-card.mdl-shadow--2dp
+      .mdl-card__title.mdl-color--primary.mdl-color-text--white 
+        h2.mdl-card__title-text Create new Poll
+      .card-body
+        form(action='#')
+          .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input.mdl-textfield__input(type='text', v-model="newPoll.name")
+            label.mdl-textfield__label Poll Name
+          div     
+            | End Date:
+            input.mdl-textfield__input(type='date', v-model="newPoll.expiry")
+          br
+          | Candidates:
+          br 
+          div(v-for="candidate in newPoll.candidates")
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+              input.mdl-textfield__input(type='text', v-model="candidate.name")
+              label.mdl-textfield__label Name
+            | &nbsp;
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+              input.mdl-textfield__input(type='text', v-model="candidate.url")
+              label.mdl-textfield__label URL
+          button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(v-on:click="addCandidate")
+            | Add Candidate
+      .mdl-card__actions.mdl-card--border
+        button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(v-on:click="createPoll")
+          | Create Poll
+    .mdl-card.mdl-shadow--2dp
+      .mdl-card__title.mdl-color--primary.mdl-color-text--white 
+        h2.mdl-card__title-text Existing Polls
+      .card-body
+        ul.mdl-list
+          a(v-for="poll in polls", v-bind:href="'/poll_admin/' + poll._id")
+            li.clickable-list-item.mdl-list__item.mdl-list__item--two-line(v-bind:class="{ 'new-poll': poll.new }")
+              span.mdl-list__item-primary-content
+                i.material-icons.mdl-list__item-avatar bubble_chart
+                span {{poll.name}}
+                span.mdl-list__item-sub-title End Date: {{poll.expiry}}
+              span.mdl-list__item-secondary-action
+                i.material-icons keyboard_arrow_right
+  script(src="/js/poll_admin.js")

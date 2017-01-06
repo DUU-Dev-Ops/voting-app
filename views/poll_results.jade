@@ -1,9 +1,11 @@
 extends layout
 
 block content
-  #open-polls
+  #poll-results
     .mdl-card.mdl-shadow--2dp
       .mdl-card__title.mdl-color--primary.mdl-color-text--white 
-        h2.mdl-card__title-text Open Polls
+        h2.mdl-card__title-text Poll: {{poll.name}}
       .card-body
-  script(src="/js/index.js")
+  script.
+    pollId="#{poll_id}"
+  script(src="/js/poll_results.js")

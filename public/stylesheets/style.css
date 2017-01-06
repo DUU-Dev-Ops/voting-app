@@ -1,8 +1,26 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+.mdl-card
+{
+    min-width: 70%;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-left: auto;
 }
 
-a {
-  color: #00B7FF;
+.card-body
+{
+    padding: 20px;
+}
+
+.clickable-list-item:hover
+{
+    cursor: pointer;
+
+    background-color: rgba(0,0,0,.05);
+}
+
+.new-poll
+{
+    background-color: rgba(0, 255, 0, .1);
 }
